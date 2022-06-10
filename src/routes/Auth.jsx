@@ -10,6 +10,7 @@ import { signInWithEmailAndPassword, } from "firebase/auth";
 
 // components
 import LoginGoogle from "../components/LoginGoogle.jsx";
+import Title from "../components/Title";
 
 // style
 import { AuthStyle } from "../styles/AuthStyle.js";
@@ -45,7 +46,7 @@ export default function Auth() {
     <AuthStyle>
       <div className="loginMain">
         <div className="login">
-          <h2>ZAEZAL . .</h2>
+          <Title />
           <form className="form" onSubmit={onSubmit}>
             <input className="email" type="email" placeholder="이메일" onChange={e => setEmail(e.target.value)} value={email} />
             <input className="password" type="password" placeholder="비밀번호" onChange={e => setPw(e.target.value)} value={pw} />

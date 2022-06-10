@@ -15,18 +15,6 @@ export const AuthStyle = styled.div`
       border: 1px solid rgb(170, 170, 170);
       border-radius: 5px;
       box-sizing: border-box;
-
-      h2 {
-        font-size: 42px;
-        font-family: 'Ubuntu', sans-serif;
-        letter-spacing: -2px;
-        color: #FF0090;
-        width: 183px;
-        margin: 0 auto;
-        padding: 25px;
-    
-        // border: 1px solid blue;
-      }
     
       .form {
         width: 260px;

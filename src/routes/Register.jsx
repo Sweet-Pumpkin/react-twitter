@@ -10,6 +10,7 @@ import { createUserWithEmailAndPassword, } from "firebase/auth";
 
 // components
 import LoginGoogle from "../components/LoginGoogle";
+import Title from "../components/Title";
 
 // style
 import { RegisterStyle } from "../styles/RegisterStyle";
@@ -67,8 +68,8 @@ export default function Auth() {
     <RegisterStyle>
       <div className="loginMain">
         <div className="login">
-          <h2>ZAEZAL . .</h2>
-          <LoginGoogle/>
+          <Title />
+          <LoginGoogle />
           <hr />
           <form className="form" onSubmit={onSubmit}>
             <input className="email" type="email" placeholder="이메일" onChange={e => setEmail(e.target.value)} value={email} />

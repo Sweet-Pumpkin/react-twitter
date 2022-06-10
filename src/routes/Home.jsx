@@ -1,10 +1,17 @@
 // react
 import React from "react";
 
-import Profile from "../components/Profile";
+// components
+import Title from "../components/Title";
+import SendingZaezal from "../components/SendingZaezal";
+import ImportZaezal from "../components/ImportZaezal";
 
 export default function Home() {
   return (
-    <Profile />
+    <>
+      <Title />
+      <SendingZaezal />
+      <ImportZaezal />
+    </>
   )
 }
