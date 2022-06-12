@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 // firebase
-import { DB } from "../firebase";
+import { myAuth, DB } from "../firebase";
 import { collection, query, onSnapshot, orderBy } from 'firebase/firestore';
 
 // components
@@ -32,11 +32,14 @@ export default function ImportZaezal() {
         {zaezals.map(zaezal => (
           <Zaezal 
             key={zaezal.id} 
+            userId={zaezal.id}
+            createdAt={zaezal.createdAt}
             photoURL={zaezal.photoURL}
             userName={zaezal.userName}
             userEmail={zaezal.userEmail}
             ZaezalText={zaezal.text} 
             DownloadFile={zaezal.downloadFile}
+            isOwner={zaezal.creatorId === myAuth.currentUser.uid}
           />
         ))}
       </div>

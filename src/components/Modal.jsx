@@ -4,7 +4,7 @@ import React, { useState } from "react";
 // firebase
 import { myAuth, storage } from "../firebase";
 import { updateProfile } from "firebase/auth";
-import { ref, uploadString, getDownloadURL, deleteObject } from 'firebase/storage';
+import { ref, uploadString, getDownloadURL, deleteObject, } from 'firebase/storage';
 import { v4 as uuidv4 } from "uuid";
 
 // style
@@ -33,9 +33,7 @@ export default function Modal({ setModalState, setMyName, setMyImgURL, firstPhot
       const res = await uploadString(fileRef, newPhoto, "data_url");
       const downloadImg = await getDownloadURL(res.ref);
       
-      await updateProfile(info, {
-        photoURL: downloadImg,
-      })
+      await updateProfile(info, {photoURL: downloadImg,})
 
       setFirstPhotoChange(true);
       setPrevPhotoURL(downloadImg);
@@ -44,12 +42,10 @@ export default function Modal({ setModalState, setMyName, setMyImgURL, firstPhot
 
     // update displayname
     if (info.displayName !== newName) {
-      await updateProfile(info, {
-        displayName: newName,
-      });
+      await updateProfile(info, {displayName: newName,});
       setMyName(info.displayName);
     }
-
+    
     setModalState(false);
   }
 

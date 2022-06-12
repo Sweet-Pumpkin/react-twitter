@@ -5,6 +5,5 @@ export const ImportZaezalStyle = styled.div`
     width: 350px;
     margin: 0 auto;
     margin-top: 10px;
-    border: 1px solid red;
   }
 `

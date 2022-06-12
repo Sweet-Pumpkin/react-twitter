@@ -47,6 +47,10 @@ export default function SendingZaezal() {
   const onSend = async e => {
     e.preventDefault();
     
+    if (!zaezal.trim()) {
+      return alert("빈 값입니다.");
+    }
+
     // uploading file
     let downloadFile = "";
     if (newFile !== "") {
@@ -114,12 +118,12 @@ export default function SendingZaezal() {
           />
 
           {/* img preview */}
-          <div>
+          <div className="preview">
             {
               newFile && 
               <div>
                 <img src={newFile} width="282px" height="auto" alt="preview"/>
-                <button onClick={onClearFileURL}>x</button>
+                <button className="clear" onClick={onClearFileURL}>x</button>
               </div>
             }
           </div>

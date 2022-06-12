@@ -17,12 +17,35 @@ export const SendingZaezalStyle = styled.div`
         height: 52px;
         border-radius: 50px;
         margin: 5px;
+        &:hover {
+          opacity: .8;
+        }
       }
     }
 
     form {
       width: 282px;
       margin: 0 auto;
+
+      // img preview
+      .preview {
+        position: relative;
+        .clear {
+          position: absolute;
+          top: 5%;
+          left: 5%;
+          width: 25px;
+          height: 25px;
+          border: none;
+          border-radius: 50px;
+          background-color: gray;
+          color: white;
+          opacity: 0.5;
+          &:hover {
+            opacity: .8;
+          }
+        }
+      }
 
       .inputZaezal {
         margin-top: 10px;
