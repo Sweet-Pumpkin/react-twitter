@@ -34,9 +34,8 @@ export const SendingZaezalStyle = styled.div`
       }
 
       .btn {
-        position: absolute;
-        right: 5px;
-        margin: 5px 0 5px 0;
+        margin-left: 200px;
+        margin-top: 5px;
         label {
           margin-right: 10px;
           cursor: pointer;

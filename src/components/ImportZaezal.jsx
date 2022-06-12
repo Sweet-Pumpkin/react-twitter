@@ -33,9 +33,10 @@ export default function ImportZaezal() {
           <Zaezal 
             key={zaezal.id} 
             photoURL={zaezal.photoURL}
-            userId={zaezal.userName}
+            userName={zaezal.userName}
             userEmail={zaezal.userEmail}
             ZaezalText={zaezal.text} 
+            DownloadFile={zaezal.downloadFile}
           />
         ))}
       </div>

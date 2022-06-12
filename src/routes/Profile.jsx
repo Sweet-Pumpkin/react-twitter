@@ -11,8 +11,8 @@ import { onAuthStateChanged } from 'firebase/auth';
 // components
 import Modal from "../components/Modal";
 
-// img
-import basicImg from "../assets/basic.png"
+// style
+import { ProfileStyle } from "../styles/ProfileStyle";
 
 export default function Profile() {
   // navigate
@@ -26,23 +26,16 @@ export default function Profile() {
 
   const [modalState, setModalState] = useState(false);
   
+  // firstPhotoChange
+  const [firstPhotoChange, setFirstPhotoChange] = useState(false);
+
   // firebase info
   useEffect(() => {
     onAuthStateChanged(myAuth, () => {
       const info = myAuth.currentUser
 
-      if (info.displayName === null) {
-        setMyName("unknown");
-      } else {
-        setMyName(info.displayName);
-      }
-
-      if (info.photoURL === null) {
-        setMyImgURL(basicImg)
-      } else {
-        setMyImgURL(info.photoURL);
-      }
-
+      setMyName(info.displayName);
+      setMyImgURL(info.photoURL);
       setEmail(info.email);
       setJoined(info.metadata.creationTime);
 
@@ -58,17 +51,31 @@ export default function Profile() {
   const onLogout = () => {
     myAuth.signOut();
     navigate("/");
+    window.location.reload();
   }
 
   return (
-    <div className="profile">
-      <img src={myImgURL} alt="myImg" />
-      <button onClick={onEdit}>프로필 수정</button>
-      <button onClick={onLogout}>로그아웃</button>
-      <h3>{myName}</h3>
-      <h3>{email}</h3>
-      <h4>{joined.slice(0, 16)}</h4>
-      <div>{modalState && <Modal setModalState={setModalState} setMyName={setMyName} />}</div>
+    <ProfileStyle>
+      <div className="profile">
+        <img src={myImgURL} alt="myImg" />
+        <button onClick={onEdit}>프로필 수정</button>
+        <button onClick={onLogout}>로그아웃</button>
+        <h3>{myName}</h3>
+        <h3>{email}</h3>
+        <h4>{joined.slice(0, 16)}</h4>
+        <div className="modal">
+          {
+            modalState && 
+            <Modal 
+              setModalState={setModalState} 
+              setMyName={setMyName} 
+              setMyImgURL={setMyImgURL}
+              firstPhotoChange={firstPhotoChange}
+              setFirstPhotoChange={setFirstPhotoChange}
+             />
+          }
+        </div>
     </div>
+    </ProfileStyle>
   )
 }

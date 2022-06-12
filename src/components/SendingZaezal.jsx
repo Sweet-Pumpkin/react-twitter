@@ -5,9 +5,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // firebase
-import { myAuth, DB } from "../firebase";
+import { myAuth, DB, storage } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
+import { ref, uploadString, getDownloadURL } from "firebase/storage";
+import { v4 as uuidv4 } from "uuid";
 
 // img
 import basicImg from "../assets/basic.png";
@@ -18,8 +20,13 @@ import photoIcon from "../assets/photo.svg";
 import { SendingZaezalStyle } from "../styles/SendingZaezalStyle"; 
 
 export default function SendingZaezal() {
+  const info = myAuth.currentUser;
+  
   // send msg
   const [zaezal, setZaezal] = useState("");
+
+  // uploading img
+  const [newFile, setNewFile] = useState("");
 
   // imgURL
   const [myImgURL ,setMyImgURL] = useState("")
@@ -33,20 +40,30 @@ export default function SendingZaezal() {
       } else {
         setMyImgURL(info.photoURL);
       }
+      
     })
   }, [])
 
   const onSend = async e => {
     e.preventDefault();
     
+    // uploading file
+    let downloadFile = "";
+    if (newFile !== "") {
+      const fileRef = ref(storage, `${info.uid}/${uuidv4()}`);
+      const res = await uploadString(fileRef, newFile, "data_url");
+      downloadFile = await getDownloadURL(res.ref);
+    }
+
     // sending msg info
     const zaezalZaezal = {
       text: zaezal,
       createdAt: Date.now(),
-      creatorId: myAuth.currentUser.uid,
-      photoURL: myAuth.currentUser.photoURL,
-      userName: myAuth.currentUser.displayName,
-      userEmail: myAuth.currentUser.email,
+      creatorId: info.uid,
+      photoURL: info.photoURL,
+      userName: info.displayName,
+      userEmail: info.email,
+      downloadFile,
     }
 
     try {
@@ -56,7 +73,26 @@ export default function SendingZaezal() {
     }
 
     setZaezal("");
+    setNewFile("");
+  }
 
+  // File
+  const onFileChange = e => {
+    const { target: { files }, } = e;
+    const theFile = files[0];
+
+    // using FileReader API
+    const reader = new FileReader();
+    reader.onloadend = finishedEvent => {
+      const { currentTarget: { result } } = finishedEvent
+      setNewFile(result);
+    }
+    reader.readAsDataURL(theFile);
+  }
+
+  // Clear img preview
+  const onClearFileURL = () => {
+    setNewFile("");
   }
 
   return (
@@ -65,13 +101,35 @@ export default function SendingZaezal() {
         <Link className="goToProfile" to="/profile">
           <img src={myImgURL} alt="myImg" />
         </Link>
+
+        {/* input */}
         <form onSubmit={onSend}>
-          <input className="inputZaezal" type="text" placeholder="무슨 생각을 하고 계신가요?" value={zaezal} onChange={e => setZaezal(e.target.value)} maxLength={120} />
+          <textarea 
+            className="inputZaezal" 
+            type="text" 
+            placeholder="무슨 생각을 하고 계신가요?" 
+            value={zaezal} 
+            onChange={e => setZaezal(e.target.value)} 
+            maxLength={120} 
+          />
+
+          {/* img preview */}
+          <div>
+            {
+              newFile && 
+              <div>
+                <img src={newFile} width="282px" height="auto" alt="preview"/>
+                <button onClick={onClearFileURL}>x</button>
+              </div>
+            }
+          </div>
+
+          {/* button */}
           <div className="btn">
             <label htmlFor="file-input">
               <img className="photo" src={photoIcon} alt="Addphoto" />
             </label>
-            <input id="file-input" type="file" accept="image/*"/>
+            <input id="file-input" type="file" accept="image/*" onChange={onFileChange} />
             <button className="sendBtn">
               <img className="send" src={sendIcon} alt="send" />
             </button>

@@ -6,11 +6,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 // firebase
 import { myAuth } from "../firebase.js";
-import { createUserWithEmailAndPassword, } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 // components
 import LoginGoogle from "../components/LoginGoogle";
 import Title from "../components/Title";
+
+// img
+import basicImg from "../assets/basic.png"
 
 // style
 import { RegisterStyle } from "../styles/RegisterStyle";
@@ -53,14 +56,14 @@ export default function Auth() {
     try {
       // email & pw로 회원가입
       await createUserWithEmailAndPassword(myAuth, email, pw)
-      .then(() => {
-        // displayname 적용
-        const res = myAuth.currentUser;
-        res.displayName = name;
-      })
+        .then(res => updateProfile(res.user, {
+          displayName: name,
+          photoURL: basicImg,
+        }));
       navigate("/");
     } catch (error) {
       alert("입력된 값이 올바르지 않습니다.")
+      window.location.reload();
     }
   }
 
