@@ -1,9 +1,11 @@
+// react
 import React, { useState, useEffect } from "react";
-
+// firebase
 import { onAuthStateChanged } from "firebase/auth";
 import { myAuth } from "./firebase";
-
+// routes&components
 import Main from "./routes/Main";
+import Loading from "./components/Loading";
 
 export default function App() {
   const [init, setInit] = useState(false);
@@ -22,7 +24,7 @@ export default function App() {
 
   return (
     <>
-      {init ? <Main isLogin={isLogin} /> : "LOADING..."} 
+      {init ? <Main isLogin={isLogin} /> : <Loading />} 
     </>
   )
 }

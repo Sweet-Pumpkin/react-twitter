@@ -1,15 +1,12 @@
 // react
 import React from "react";
-
 // firebase
 import { DB, storage } from '../firebase';
 import { doc, deleteDoc, } from 'firebase/firestore';
 import { ref, deleteObject } from "firebase/storage"
-
 // img
 import settingBtn from "../assets/setting.svg";
 import deleteBtn from "../assets/delete.svg";
-
 // style
 import { ZaezalStyle } from "../styles/ZaezalStyle";
 
