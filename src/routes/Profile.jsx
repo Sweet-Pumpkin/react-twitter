@@ -1,16 +1,13 @@
 // react
 import React, { useState, useEffect } from 'react'
-
 // react router
 import { useNavigate } from 'react-router-dom';
-
 // firebase
 import { myAuth } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-
 // components
 import Modal from "../components/Modal";
-
+import Title from '../components/Title';
 // style
 import { ProfileStyle } from "../styles/ProfileStyle";
 
@@ -57,24 +54,35 @@ export default function Profile() {
   return (
     <ProfileStyle>
       <div className="profile">
-        <img src={myImgURL} alt="myImg" />
-        <button onClick={onEdit}>프로필 수정</button>
-        <button onClick={onLogout}>로그아웃</button>
-        <h3>{myName}</h3>
-        <h3>{email}</h3>
-        <h4>{joined.slice(0, 16)}</h4>
-        <div className="modal">
-          {
-            modalState && 
+        <Title />
+        {/* USER INFO WRAP */}
+        <div className="info-wrap">
+          <img src={myImgURL} alt="myImg" />
+          <div className="btns">   
+            <button onClick={onEdit}>프로필 수정</button>
+            <button onClick={onLogout}>로그아웃</button>
+          </div>
+          <div className="userInfo">
+            <h3>{myName}</h3>
+            <h3>{email}</h3>
+            <h4>{joined.slice(0, 16)}</h4>
+          </div>
+        </div>
+
+        {/* MODAL STATE */}
+        {
+          modalState && 
+          <div className="modal">
             <Modal 
               setModalState={setModalState} 
               setMyName={setMyName} 
               setMyImgURL={setMyImgURL}
               firstPhotoChange={firstPhotoChange}
               setFirstPhotoChange={setFirstPhotoChange}
-             />
-          }
-        </div>
+            />
+          </div>
+        }
+
     </div>
     </ProfileStyle>
   )
