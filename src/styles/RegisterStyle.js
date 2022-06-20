@@ -13,7 +13,7 @@ export const RegisterStyle = styled.div`
       border: 1px solid rgb(170, 170, 170);
       border-radius: 5px;
       box-sizing: border-box;
-      @media screen and (max-width: 350px) {
+      @media screen and (max-width: 400px) {
         border: none;
       }
     
@@ -79,15 +79,16 @@ export const RegisterStyle = styled.div`
       padding: 20px;
       margin-top: 15px;
       font-size: 14px;
-      @media screen and (max-width: 350px) {
+      @media screen and (max-width: 400px) {
         border-top: 1px solid rgb(170, 170, 170);
         outline: none;
         border-radius: 0px;
       }
       
       .nav {
-        width: 89px;
+        width: 150px;
         margin: 0 auto;
+        text-align: center;
         span{
           margin-right: 10px;
           color: rgb(100, 100, 100);
