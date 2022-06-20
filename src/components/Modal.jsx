@@ -1,16 +1,26 @@
 // react
 import React, { useState } from "react";
-
 // firebase
 import { myAuth, storage } from "../firebase";
 import { updateProfile } from "firebase/auth";
 import { ref, uploadString, getDownloadURL, deleteObject, } from 'firebase/storage';
 import { v4 as uuidv4 } from "uuid";
-
+// img
+import CloseBtn from "../assets/close.svg";
+import Camera from "../assets/photo_camera.svg";
 // style
 import { ModalStyle } from "../styles/ModalStyle";
 
-export default function Modal({ setModalState, setMyName, setMyImgURL, firstPhotoChange, setFirstPhotoChange }) {
+export default function Modal(
+  { 
+    setModalState, 
+    setMyName, 
+    setMyImgURL, 
+    firstPhotoChange, 
+    setFirstPhotoChange,
+     
+  }
+  ) {
   // firebase info
   const info = myAuth.currentUser;
   const [newName, setNewName] = useState(info.displayName);
@@ -70,19 +80,24 @@ export default function Modal({ setModalState, setMyName, setMyImgURL, firstPhot
 
   return (
     <ModalStyle>
-      <div className="background">
-        <div className="backgroundColor"></div>
-        <div className="modal">
-          <button onClick={onClose}>x</button>
-          <form onSubmit={onSubmit}>
-            <label htmlFor="file-input">
-              <img className="photo" src={newPhoto} alt="Addphoto" />
-            </label>
-            <input id="file-input" type="file" accept="image/*" onChange={onFileChange} />
-            <input type="text" value={newName} onChange={e => setNewName(e.target.value)}/>
-            <input type="submit" value="변경" />
-          </form>
-        </div>
+      <div className="modal">
+        {/* CLOSE BUTTON */}
+        <button className="closeBtn" onClick={onClose}>
+          <img className="close" src={CloseBtn} alt="closeBtn" />
+        </button>
+        {/* EDITING PROFILE IMG */}
+        <form onSubmit={onSubmit}>
+          <label htmlFor="file-input">
+            <img className="photo" src={newPhoto} alt="Addphoto" />
+            <div className="cameraBtn">
+              <img className="camera" src={Camera} alt="camera" />
+            </div>
+          </label>
+          <input id="file-input" type="file" accept="image/*" onChange={onFileChange} />
+          {/* EDITING USER NAME */}
+          <input className="editingUserName" type="text" value={newName} onChange={e => setNewName(e.target.value)}/>
+          <input className="submitEdit" type="submit" value="프로필 변경" />
+        </form>
       </div>
     </ModalStyle>
   )

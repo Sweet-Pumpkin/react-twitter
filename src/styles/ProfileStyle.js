@@ -14,6 +14,7 @@ export const ProfileStyle = styled.div`
         width: 100px;
         height: 100px;
         border-radius: 50px;
+        margin: 5px;
       }
       
       /* BUTTONS */
@@ -25,7 +26,6 @@ export const ProfileStyle = styled.div`
         .editBtn, .logoutBtn {
           background-color: transparent;
           border: none;
-          margin-right: 5px;
           cursor: pointer;
 
           img {
@@ -47,7 +47,7 @@ export const ProfileStyle = styled.div`
       
       /* USER INFO */
       .userInfo {
-        padding: 10px 0 10px 0;
+        padding: 10px 0 10px 5px;
 
         /* USER NAME */
         .userName {
@@ -74,5 +74,31 @@ export const ProfileStyle = styled.div`
         border: .5px solid #cccccc;
       }
     }
+  }
+
+  .modal-wrap {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    .background {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #cccccc;
+      opacity: .5;
+    }
+
+    .modal {
+      width: 350px;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 30%);
+    }
+
   }
 `

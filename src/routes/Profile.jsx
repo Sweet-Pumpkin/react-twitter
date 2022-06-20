@@ -8,6 +8,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 // components
 import Modal from "../components/Modal";
 import Title from '../components/Title';
+import ImportMyZaezal from "../components/ImportMyZaezal";
 // img 
 import EditIMG from "../assets/setting.svg";
 import LogoutIMG from "../assets/logout.svg";
@@ -79,10 +80,14 @@ export default function Profile() {
           </div>
           <hr />
         </div>
-
-        {/* MODAL STATE */}
-        {
-          modalState && 
+        <ImportMyZaezal />
+      </div>
+            
+      {/* MODAL STATE */}
+      {
+        modalState && 
+        <div className="modal-wrap">
+          <div className="background" onClick={() => setModalState(false)}></div>
           <div className="modal">
             <Modal 
               setModalState={setModalState} 
@@ -92,9 +97,8 @@ export default function Profile() {
               setFirstPhotoChange={setFirstPhotoChange}
             />
           </div>
-        }
-
-    </div>
+        </div>
+      }
     </ProfileStyle>
   )
 }
