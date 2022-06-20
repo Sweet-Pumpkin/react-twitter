@@ -86,8 +86,9 @@ export const RegisterStyle = styled.div`
       }
       
       .nav {
-        width: 89px;
+        width: 150px;
         margin: 0 auto;
+        text-align: center;
         span{
           margin-right: 10px;
           color: rgb(100, 100, 100);
