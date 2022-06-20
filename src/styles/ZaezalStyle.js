@@ -5,6 +5,9 @@ export const ZaezalStyle = styled.div`
     border: 1px solid rgb(220, 220, 220);
     border-radius: 15px;
     margin-bottom: 10px;
+    @media screen and (max-width: 400px) {
+      border: none;
+    }
   }
 
   .userInfo {

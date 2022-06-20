@@ -80,7 +80,10 @@ export default function Profile() {
           </div>
           <hr />
         </div>
+
+        {/* BRING MY ZAEZAL */}
         <ImportMyZaezal />
+        
       </div>
             
       {/* MODAL STATE */}
