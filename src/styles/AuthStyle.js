@@ -8,18 +8,18 @@ export const AuthStyle = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
 
-    // border: 1px solid red;
-
     .login {
       width: 350px;
       border: 1px solid rgb(170, 170, 170);
       border-radius: 5px;
       box-sizing: border-box;
+      @media screen and (max-width: 350px) {
+        border: none;
+      }
     
       .form {
         width: 260px;
         margin: 0 auto;
-        // border: 1px solid greenyellow;
     
         .email, .password {
           width: 250px;
@@ -55,12 +55,17 @@ export const AuthStyle = styled.div`
     }
 
     .register {
-      border: 1px solid rgb(170, 170, 170);
+      outline: 1px solid rgb(170, 170, 170);
       border-radius: 5px;
       box-sizing: border-box;
       padding: 20px;
       margin-top: 15px;
       font-size: 14px;
+      @media screen and (max-width: 350px) {
+        border-top: 1px solid rgb(170, 170, 170);
+        outline: none;
+        border-radius: 0px;
+      }
       
       .nav {
         width: 130px;

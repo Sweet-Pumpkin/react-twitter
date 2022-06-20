@@ -82,7 +82,6 @@ export default function Auth() {
             <span>{msg}</span>
             <input className="loginbtn" type="submit" value="회원가입" disabled={btnDisable} />
           </form>
-            
         </div>
         <div className="register">
           <div className="nav">
