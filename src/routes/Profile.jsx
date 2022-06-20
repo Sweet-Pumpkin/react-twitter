@@ -8,6 +8,9 @@ import { onAuthStateChanged } from 'firebase/auth';
 // components
 import Modal from "../components/Modal";
 import Title from '../components/Title';
+// img 
+import EditIMG from "../assets/setting.svg";
+import LogoutIMG from "../assets/logout.svg";
 // style
 import { ProfileStyle } from "../styles/ProfileStyle";
 
@@ -57,16 +60,24 @@ export default function Profile() {
         <Title />
         {/* USER INFO WRAP */}
         <div className="info-wrap">
+          {/* USER IMG */}
           <img src={myImgURL} alt="myImg" />
+          {/* BUTTONS */}
           <div className="btns">   
-            <button onClick={onEdit}>프로필 수정</button>
-            <button onClick={onLogout}>로그아웃</button>
+            <button className="editBtn" onClick={onEdit}>
+              <img src={EditIMG} alt="Edit Profile" />
+            </button>
+            <button className="logoutBtn" onClick={onLogout}>
+              <img src={LogoutIMG} alt="Logout" />
+            </button>
           </div>
+          {/* USER INFO */}
           <div className="userInfo">
-            <h3>{myName}</h3>
-            <h3>{email}</h3>
-            <h4>{joined.slice(0, 16)}</h4>
+            <h3 className="userName">{myName}</h3>
+            <h3 className="userEmail">{email}</h3>
+            <h4 className="userJoined">{`Joined: ${joined.slice(0, 16)}`}</h4>
           </div>
+          <hr />
         </div>
 
         {/* MODAL STATE */}
