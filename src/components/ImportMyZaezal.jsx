@@ -9,14 +9,13 @@ import Zaezal from "./Zaezal";
 import { ImportZaezalStyle } from "../styles/ImportZaezalStyle";
 
 export default function ImportZaezal() {
-
+  // zaezals
   const [zaezals, setZaezals] = useState([]);
   
   useEffect(() => {
     // getZaezals form firebase
     const getZaezals = query(
       collection(DB, "zaezals"), 
-      // where("creatorId", "==", myAuth.currentUser.uid), 
       orderBy("createdAt", "desc"));
     
     onSnapshot(getZaezals, snapshot => {
@@ -32,19 +31,21 @@ export default function ImportZaezal() {
   return (
     <ImportZaezalStyle>
       <div className="zaezals">
-        {zaezals.map(zaezal => (
-          <Zaezal 
-             key={zaezal.id} 
-             userId={zaezal.id}
-             createdAt={zaezal.createdAt}
-             photoURL={zaezal.photoURL}
-             userName={zaezal.userName}
-             userEmail={zaezal.userEmail}
-             ZaezalText={zaezal.text} 
-             DownloadFile={zaezal.downloadFile}
-             isOwner={zaezal.creatorId === myAuth.currentUser.uid}
-           />
-        ))}
+        {
+          zaezals.map(zaezal => (
+            <Zaezal 
+              key={zaezal.id} 
+              userId={zaezal.id}
+              createdAt={zaezal.createdAt}
+              photoURL={zaezal.photoURL}
+              userName={zaezal.userName}
+              userEmail={zaezal.userEmail}
+              ZaezalText={zaezal.text} 
+              DownloadFile={zaezal.downloadFile}
+              isOwner={zaezal.creatorId === myAuth.currentUser.uid}
+            />
+          ))
+        }
       </div>
     </ImportZaezalStyle>
   )
