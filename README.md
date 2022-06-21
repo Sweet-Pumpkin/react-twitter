@@ -1,4 +1,4 @@
-## SNS 재잘(Zaezal)
+## SNS ZAEZAL
 > - React & Firebase 사용해 SNS 만들기
 
 ## Version
@@ -11,3 +11,9 @@
 ![Generic badge](https://img.shields.io/badge/uuid-8.3.2-blue.svg)
 
 ## Develop
+
+### Auth
+
+### Write ZAEZAL
+
+### Profile
