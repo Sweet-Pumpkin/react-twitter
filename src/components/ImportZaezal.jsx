@@ -13,7 +13,7 @@ import { ImportZaezalStyle } from "../styles/ImportZaezalStyle";
 export default function ImportZaezal() {
   // react-intersection-observer
   const [ref, inView] = useInView({ rootMargin: "0px 0px 30px 0px" })
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(3);
   // zaezals
   const [zaezals, setZaezals] = useState([]);
   
