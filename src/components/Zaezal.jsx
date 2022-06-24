@@ -1,5 +1,5 @@
 // react
-import React from "react";
+import React, { useState } from "react";
 // firebase
 import { DB, storage } from '../firebase';
 import { doc, deleteDoc, } from 'firebase/firestore';
@@ -7,6 +7,8 @@ import { ref, deleteObject } from "firebase/storage"
 // img
 import settingBtn from "../assets/setting.svg";
 import deleteBtn from "../assets/delete.svg";
+// components & routes
+import UpdateZaezal from "./UpdateZaezal";
 // style
 import { ZaezalStyle } from "../styles/ZaezalStyle";
 
@@ -21,6 +23,8 @@ export default function Zaezal({
     isOwner,
   }) {
 
+  // update state of setting btn
+  const [updateState, setUpdateState] = useState(false)
   // import DB zaezals
   const zaeZalTextRef = doc(DB, "zaezals", userId);
 
@@ -56,12 +60,22 @@ export default function Zaezal({
             <div className="time">{timestamp}</div>
           </div>
         </div>
-        <div className="text">{ZaezalText}</div>
+        {/* UPDATE ZAEZAL */}
+        { 
+          updateState ? 
+          <UpdateZaezal 
+            zaeZalTextRef={zaeZalTextRef} 
+            ZaezalText={ZaezalText} 
+            setUpdateState={setUpdateState} 
+          /> : 
+          <div className="text">{ZaezalText}</div>
+        }
+        {/* IMG FILE */}
         { DownloadFile && <img src={DownloadFile} className="zaezalImg" alt="img" /> }
         <div className="option">
           { isOwner &&
             <>
-              <button className="setting">
+              <button onClick={() => setUpdateState(true)} className="setting">
                 <img src={settingBtn} alt="img" />
               </button>
               <button onClick={onDeleteClick} className="delete">
