@@ -2,7 +2,7 @@
 > - React & Firebase 사용해 SNS 만들기
 
 <div align="center">
-  <img src="./img/01zae.gif" alt="title" />
+  <img src="./img/01zaezal.gif" alt="title" />
 </div>
 
 ## Version
@@ -19,7 +19,7 @@
 ### Auth
 
 <div align="center">
-  <img src="./img/02zae.gif" alt="title" />
+  <img src="./img/02zaezal_login.gif" alt="title" />
 </div>
 
   - `getAuth()`, `createUserWithEmailAndPassword()` 사용해서 회원가입하기 
@@ -29,7 +29,7 @@
 ### Write ZAEZAL
 
 <div align="center">
-  <img src="./img/03zae.gif" alt="title" />
+  <img src="./img/03zaezal_zaezal.gif" alt="title" />
 </div>
 
   - `getFirestore()`, `getStorage()`로 DB 생성
@@ -38,12 +38,23 @@
   - `query()`, `onSnapshot()`, `collection()` 사용해서 게시글 가져오기
   - `orderBy()`, `limit()` 사용해 정렬 방법, 개수 지정
   - `doc()`, `deleteDoc()`, `ref()`, `deleteObject()`로 게시글 삭제
+
+  <div align="center">
+    <img src="./img/04zaezal_modify.gif" alt="title" />
+  </div>
+
+  - `updateDoc()`으로 게시글 수정하기
+
+  <div align="center">
+    <img src="./img/05zaezal_infinity.gif" alt="title" />
+  </div>
+
   - `useInView()`로 인피티니 스크롤 구현
 
 ### Profile
 
 <div align="center">
-  <img src="./img/04zae.gif" alt="title" />
+  <img src="./img/06zaezal_profile.gif" alt="title" />
 </div>
 
   - `updateProfile()`으로 프로필 수정
